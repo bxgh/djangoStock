@@ -1,0 +1,390 @@
+
+<script>
+        $(document).ready(function(){          
+         
+          setInterval(function() { 
+            $.getJSON('http://localhost:8000/timelyMarket/mlineData/',function(ret){
+              // alert(ret.mdata)
+              var mChart = echarts.init(document.getElementById('m-line'));
+			      	mChart.setOption(initMOption(ret,'hs'));                
+           }) ;   
+                              
+            $.getJSON('http://localhost:8000/timelyMarket/ajax1/',function(ret){                 
+                  var now=ret.now.toFixed(2)
+                  var amount=ret.amount
+                  var tsCode=ret.code
+                  var stcokName=ret.name
+                  var totalCost=ret.总市值
+                  var cost=ret.流通市值
+                  var high=ret.high_2.toFixed(2)
+                  var low=ret.low_2.toFixed(2)
+                  var scope=ret.振幅.toFixed(2)
+                  var close=ret.close.toFixed(2)
+                  var open=ret.open.toFixed(2)
+                  var pctChg=ret.pct_chg.toFixed(2)
+                  var tradeTime=ret.datetime.slice(-8) 
+                  var turnover=ret.turnover.toFixed(2)   
+                  var bidV=ret.bid_volume/100    
+                  var askV=ret.ask_volume/100
+                  var bid1 =ret.bid1.toFixed(2)   
+                  var bid2 =ret.bid2.toFixed(2) 
+                  var bid3 =ret.bid3.toFixed(2) 
+                  var bid4 =ret.bid4.toFixed(2) 
+                  var bid5 =ret.bid5.toFixed(2)   
+                  var bidV1 =ret.bid1_volume   
+                  var bidV2 =ret.bid2_volume 
+                  var bidV3 =ret.bid3_volume 
+                  var bidV4 =ret.bid4_volume 
+                  var bidV5 =ret.bid5_volume       
+                  var ask1 =ret.ask1.toFixed(2)   
+                  var ask2 =ret.ask2.toFixed(2) 
+                  var ask3 =ret.ask3.toFixed(2) 
+                  var ask4 =ret.ask4.toFixed(2) 
+                  var ask5 =ret.ask5.toFixed(2)   
+                  var askV1 =ret.ask1_volume   
+                  var askV2 =ret.ask2_volume 
+                  var askV3 =ret.ask3_volume 
+                  var askV4 =ret.ask4_volume 
+                  var askV5 =ret.ask5_volume 
+                  var zbtime1=ret.zbtime1
+                  var zbprice1=ret.zbprice1   
+                  var zbamount1=(ret.zbamount1/10000).toFixed(2) 
+                  var zbbs1=ret.zbbs2
+                  var zbtime2=ret.zbtime2
+                  var zbprice2=ret.zbprice2   
+                  var zbamount2=(ret.zbamount2/10000).toFixed(2) 
+                  var zbbs2=ret.zbbs2
+                  var zbtime3=ret.zbtime3
+                  var zbprice3=ret.zbprice3
+                  var zbamount3=(ret.zbamount3/10000).toFixed(2) 
+                  var zbbs3=ret.zbbs3
+                  var zbtime4=ret.zbtime4
+                  var zbprice4=ret.zbprice4   
+                  var zbamount4=(ret.zbamount4/10000).toFixed(2) 
+                  var zbbs4=ret.zbbs4
+                  var zbtime5=ret.zbtime5
+                  var zbprice5=ret.zbprice5   
+                  var zbamount5=(ret.zbamount5/10000).toFixed(2) 
+                  var zbbs5=ret.zbbs5
+                  var uplimit=ret.涨停价
+                  var downlimit=ret.跌停价
+                  var zf=ret.涨跌
+                  var vol=ret.volume/100
+
+                  if (cost>1000) { cost = cost.toFixed(0)}
+                  if (totalCost>1000) { totalCost = totalCost.toFixed(0)}                      
+                  document.querySelector('[data-label="tsCode"] > .text > p > span').innerHTML =tsCode;            
+                  document.querySelector('[data-label="stcokName"] > .text > p > span').innerHTML =stcokName;  
+                  document.querySelector('[data-label="amount"] > .text > p > span').innerHTML =amount+'万';          
+                  document.querySelector('[data-label="pctChg"] > .text > p > span').innerHTML =pctChg+'%';                    
+                  document.querySelector('[data-label="now"] > .text > p > span').innerHTML=now;
+                  document.querySelector('[data-label="cost"] > .text > p > span').innerHTML =cost;              
+                  document.querySelector('[data-label="totalCost"] > .text > p > span').innerHTML =totalCost;  
+                  document.querySelector('[data-label="pe"] > .text > p > span').innerHTML =ret.PE;
+                  document.querySelector('[data-label="high"] > .text > p > span').innerHTML =high;
+                  document.querySelector('[data-label="low"] > .text > p > span').innerHTML =low;
+                  document.querySelector('[data-label="open"] > .text > p > span').innerHTML =open;
+                  document.querySelector('[data-label="close"] > .text > p > span').innerHTML =close
+                  document.querySelector('[data-label="scope"] > .text > p > span').innerHTML =scope;
+                  document.querySelector('[data-label="tradeTime"] > .text > p > span').innerHTML =tradeTime;                  
+                  document.querySelector('[data-label="turnover"] > .text > p > span').innerHTML =turnover+'%';  
+                  document.querySelector('[data-label="bidV"] > .text > p > span').innerHTML =bidV;  
+                  document.querySelector('[data-label="bidV1"] > .text > p > span').innerHTML =bidV1;
+                  document.querySelector('[data-label="bidV2"] > .text > p > span').innerHTML =bidV2;
+                  document.querySelector('[data-label="bidV3"] > .text > p > span').innerHTML =bidV3;
+                  document.querySelector('[data-label="bidV4"] > .text > p > span').innerHTML =bidV4;
+                  document.querySelector('[data-label="bidV5"] > .text > p > span').innerHTML =bidV5;
+                  document.querySelector('[data-label="bid1"] > .text > p > span').innerHTML =bid1;
+                  document.querySelector('[data-label="bid2"] > .text > p > span').innerHTML =bid2;
+                  document.querySelector('[data-label="bid3"] > .text > p > span').innerHTML =bid3;
+                  document.querySelector('[data-label="bid4"] > .text > p > span').innerHTML =bid4;
+                  document.querySelector('[data-label="bid5"] > .text > p > span').innerHTML =bid5;
+                  document.querySelector('[data-label="askV"] > .text > p > span').innerHTML =askV; 
+                  document.querySelector('[data-label="askV1"] > .text > p > span').innerHTML =askV1;
+                  document.querySelector('[data-label="askV2"] > .text > p > span').innerHTML =askV2;
+                  document.querySelector('[data-label="askV3"] > .text > p > span').innerHTML =askV3;
+                  document.querySelector('[data-label="askV4"] > .text > p > span').innerHTML =askV4;
+                  document.querySelector('[data-label="askV5"] > .text > p > span').innerHTML =askV5;
+                  document.querySelector('[data-label="ask1"] > .text > p > span').innerHTML =ask1;
+                  document.querySelector('[data-label="ask2"] > .text > p > span').innerHTML =ask2;
+                  document.querySelector('[data-label="ask3"] > .text > p > span').innerHTML =ask3;
+                  document.querySelector('[data-label="ask4"] > .text > p > span').innerHTML =ask4;
+                  document.querySelector('[data-label="ask5"] > .text > p > span').innerHTML =ask5;                  
+                  document.querySelector('[data-label="zbtime1"] > .text > p > span').innerHTML =zbtime1;
+                  document.querySelector('[data-label="zbprice1"] > .text > p > span').innerHTML =zbprice1;
+                  document.querySelector('[data-label="zbamount1"] > .text > p > span').innerHTML =zbamount1;    
+                  document.querySelector('[data-label="uplimit"] > .text > p > span').innerHTML =uplimit;  
+                  document.querySelector('[data-label="downlimit"] > .text > p > span').innerHTML =downlimit;   
+                  document.querySelector('[data-label="zf"] > .text > p > span').innerHTML =zf; 
+                  document.querySelector('[data-label="vol"] > .text > p > span').innerHTML =vol;         
+                          
+                  if (zbprice1==close) {document.querySelector('[data-label="zbprice1"] > .text > p > span').style.color = "white" }
+                  else
+                  {if (zbprice1>close) {document.querySelector('[data-label="zbprice1"] > .text > p > span').style.color = "red"}
+                   else {document.querySelector('[data-label="zbprice1"] > .text > p > span').style.color = "#04D919"}
+                  }
+                  if (zbbs1=="B") {document.querySelector('[data-label="zbamount1"] > .text > p > span').style.color = "red"}
+                  else {document.querySelector('[data-label="zbamount1"] > .text > p > span').style.color = "#04D919"}
+
+                  document.querySelector('[data-label="zbtime2"] > .text > p > span').innerHTML =zbtime2;
+                  document.querySelector('[data-label="zbprice2"] > .text > p > span').innerHTML =zbprice2;
+                  document.querySelector('[data-label="zbamount2"] > .text > p > span').innerHTML =zbamount2;                  
+                  if (zbprice1==close) {document.querySelector('[data-label="zbprice2"] > .text > p > span').style.color = "white" }
+                  else
+                  {if (zbprice1>close) {document.querySelector('[data-label="zbprice2"] > .text > p > span').style.color = "red"}
+                   else {document.querySelector('[data-label="zbprice2"] > .text > p > span').style.color = "#04D919"}
+                  }
+                  if (zbbs1=="B") {document.querySelector('[data-label="zbamount2"] > .text > p > span').style.color = "red"}
+                  else {document.querySelector('[data-label="zbamount2"] > .text > p > span').style.color = "#04D919"}
+
+                  document.querySelector('[data-label="zbtime2"] > .text > p > span').innerHTML =zbtime2;
+                  document.querySelector('[data-label="zbprice2"] > .text > p > span').innerHTML =zbprice2;
+                  document.querySelector('[data-label="zbamount2"] > .text > p > span').innerHTML =zbamount2;                  
+                  if (zbprice2==close) {document.querySelector('[data-label="zbprice2"] > .text > p > span').style.color = "white" }
+                  else
+                  {if (zbprice2>close) {document.querySelector('[data-label="zbprice2"] > .text > p > span').style.color = "red"}
+                   else {document.querySelector('[data-label="zbprice2"] > .text > p > span').style.color = "#04D919"}
+                  }
+                  if (zbbs2=="B") {document.querySelector('[data-label="zbamount2"] > .text > p > span').style.color = "red"}
+                  else {document.querySelector('[data-label="zbamount2"] > .text > p > span').style.color = "#04D919"}
+
+                  document.querySelector('[data-label="zbtime3"] > .text > p > span').innerHTML =zbtime3;
+                  document.querySelector('[data-label="zbprice3"] > .text > p > span').innerHTML =zbprice3;
+                  document.querySelector('[data-label="zbamount3"] > .text > p > span').innerHTML =zbamount3;                  
+                  if (zbprice3==close) {document.querySelector('[data-label="zbprice3"] > .text > p > span').style.color = "white" }
+                  else
+                  {if (zbprice3>close) {document.querySelector('[data-label="zbprice3"] > .text > p > span').style.color = "red"}
+                   else {document.querySelector('[data-label="zbprice3"] > .text > p > span').style.color = "#04D919"}
+                  }
+                  if (zbbs3=="B") {document.querySelector('[data-label="zbamount3"] > .text > p > span').style.color = "red"}
+                  else {document.querySelector('[data-label="zbamount3"] > .text > p > span').style.color = "#04D919"}
+
+                  document.querySelector('[data-label="zbtime4"] > .text > p > span').innerHTML =zbtime4;
+                  document.querySelector('[data-label="zbprice4"] > .text > p > span').innerHTML =zbprice4;
+                  document.querySelector('[data-label="zbamount4"] > .text > p > span').innerHTML =zbamount4;                  
+                  if (zbprice4==close) {document.querySelector('[data-label="zbprice4"] > .text > p > span').style.color = "white" }
+                  else
+                  {if (zbprice4>close) {document.querySelector('[data-label="zbprice4"] > .text > p > span').style.color = "red"}
+                   else {document.querySelector('[data-label="zbprice4"] > .text > p > span').style.color = "#04D919"}
+                  }
+                  if (zbbs4=="B") {document.querySelector('[data-label="zbamount4"] > .text > p > span').style.color = "red"}
+                  else {document.querySelector('[data-label="zbamount4"] > .text > p > span').style.color = "#04D919"}
+
+                  document.querySelector('[data-label="zbtime5"] > .text > p > span').innerHTML =zbtime5;
+                  document.querySelector('[data-label="zbprice5"] > .text > p > span').innerHTML =zbprice5;
+                  document.querySelector('[data-label="zbamount5"] > .text > p > span').innerHTML =zbamount5;                  
+                  if (zbprice5==close) {document.querySelector('[data-label="zbprice5"] > .text > p > span').style.color = "white" }
+                  else
+                  {if (zbprice5>close) {document.querySelector('[data-label="zbprice5"] > .text > p > span').style.color = "red"}
+                   else {document.querySelector('[data-label="zbprice5"] > .text > p > span').style.color = "#04D919"}
+                  }
+                  if (zbbs5=="B") {document.querySelector('[data-label="zbamount5"] > .text > p > span').style.color = "red"}
+                  else {document.querySelector('[data-label="zbamount5"] > .text > p > span').style.color = "#04D919"}
+
+
+                  if (open==close)
+                  {document.querySelector('[data-label="open"]').style.color = "white"                   
+                  }    
+                  else                                  
+                  {if (open>close)
+                   {document.querySelector('[data-label="open"]').style.color = "red" }    
+                   else                                  
+                    {document.querySelector('[data-label="open"]').style.color = "#04D919"} }                     
+                  
+                  if (ask1==close)
+                  {document.querySelector('[data-label="ask1"]').style.color = "white"   
+                   document.querySelector('[data-label="askV1"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (ask1>close)
+                   {document.querySelector('[data-label="ask1"]').style.color = "red" 
+                    document.querySelector('[data-label="askV1"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="ask1"]').style.color = "#04D919"
+                    document.querySelector('[data-label="askV1"]').style.color = "#04D919"   
+                  } }      
+
+                  if (ask2==close)
+                  {document.querySelector('[data-label="ask2"]').style.color = "white"   
+                   document.querySelector('[data-label="askV2"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (ask1>close)
+                   {document.querySelector('[data-label="ask2"]').style.color = "red" 
+                    document.querySelector('[data-label="askV2"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="ask2"]').style.color = "#04D919"
+                    document.querySelector('[data-label="askV2"]').style.color = "#04D919"   
+                  } }      
+
+                  if (ask3==close)
+                  {document.querySelector('[data-label="ask3"]').style.color = "white"   
+                   document.querySelector('[data-label="askV3"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (ask1>close)
+                   {document.querySelector('[data-label="ask3"]').style.color = "red" 
+                    document.querySelector('[data-label="askV3"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="ask3"]').style.color = "#04D919"
+                    document.querySelector('[data-label="askV3"]').style.color = "#04D919"   
+                  } }      
+
+                  if (ask4==close)
+                  {document.querySelector('[data-label="ask4"]').style.color = "white"   
+                   document.querySelector('[data-label="askV4"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (ask1>close)
+                   {document.querySelector('[data-label="ask4"]').style.color = "red" 
+                    document.querySelector('[data-label="askV4"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="ask4"]').style.color = "#04D919"
+                    document.querySelector('[data-label="askV4"]').style.color = "#04D919"   
+                  } }      
+
+                  if (ask5==close)
+                  {document.querySelector('[data-label="ask5"]').style.color = "white"   
+                   document.querySelector('[data-label="askV5"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (ask1>close)
+                   {document.querySelector('[data-label="ask5"]').style.color = "red" 
+                    document.querySelector('[data-label="askV5"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="ask5"]').style.color = "#04D919"
+                    document.querySelector('[data-label="askV5"]').style.color = "#04D919"   
+                  } }    
+
+                  if (bid1==close)
+                  {document.querySelector('[data-label="bid1"]').style.color = "white"   
+                   document.querySelector('[data-label="bidV1"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (bid1>close)
+                   {document.querySelector('[data-label="bid1"]').style.color = "red" 
+                    document.querySelector('[data-label="bidV1"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="bid1"]').style.color = "#04D919"
+                    document.querySelector('[data-label="bidV1"]').style.color = "#04D919"   
+                  } }       
+                  
+                  if (bid2==close)
+                  {document.querySelector('[data-label="bid2"]').style.color = "white"   
+                   document.querySelector('[data-label="bidV1"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (bid2>close)
+                   {document.querySelector('[data-label="bid2"]').style.color = "red" 
+                    document.querySelector('[data-label="bidV2"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="bid2"]').style.color = "#04D919"
+                    document.querySelector('[data-label="bidV2"]').style.color = "#04D919"   
+                  } }  
+                  
+                  if (bid3==close)
+                  {document.querySelector('[data-label="bid3"]').style.color = "white"   
+                   document.querySelector('[data-label="bidV3"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (bid3>close)
+                   {document.querySelector('[data-label="bid3"]').style.color = "red" 
+                    document.querySelector('[data-label="bidV3"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="bid3"]').style.color = "#04D919"
+                    document.querySelector('[data-label="bidV3"]').style.color = "#04D919"   
+                  } }        
+
+                  if (bid4==close)
+                  {document.querySelector('[data-label="bid4"]').style.color = "white"   
+                   document.querySelector('[data-label="bidV4"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (bid4>close)
+                   {document.querySelector('[data-label="bid4"]').style.color = "red" 
+                    document.querySelector('[data-label="bidV4"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="bid3"]').style.color = "#04D919"
+                    document.querySelector('[data-label="bidV4"]').style.color = "#04D919"   
+                  } }        
+
+                  if (bid5==close)
+                  {document.querySelector('[data-label="bid5"]').style.color = "white"   
+                   document.querySelector('[data-label="bidV5"]').style.color = "white"                 
+                  }    
+                  else                                  
+                  {if (bid5>close)
+                   {document.querySelector('[data-label="bid5"]').style.color = "red" 
+                    document.querySelector('[data-label="bidV5"]').style.color = "red"   
+                   }    
+                   else                                  
+                    {document.querySelector('[data-label="bid5"]').style.color = "#04D919"
+                    document.querySelector('[data-label="bidV5"]').style.color = "#04D919"   
+                  } }        
+
+                  if (now>close)
+                    {document.querySelector('[data-label="pctChg"]').style.color = "red"
+                     document.querySelector('[data-label="now"]').style.color    = "red"    
+                     document.querySelector('[data-label="zf"]').style.color    = "red"   
+                    }
+                  else
+                    {if (now==close)
+                    {document.querySelector('[data-label="pctChg"]').style.color = "white"
+                     document.querySelector('[data-label="now"]').style.color    = "white"   
+                     document.querySelector('[data-label="zf"]').style.color    = "white"    
+                    }
+                    else
+                    {document.querySelector('[data-label="pctChg"]').style.color = "#04D919"
+                     document.querySelector('[data-label="now"]').style.color    = "#04D919"  
+                     document.querySelector('[data-label="zf"]').style.color    = "#04D919"                               
+                    }                               
+                    } 
+
+                  if (ret.low_2>ret.close)  
+                   {document.querySelector('[data-label="low"]').style.color    = "red"
+                   }
+                  else
+                   {document.querySelector('[data-label="low"]').style.color    = '#04D919'
+                   }
+                  if (ret.high_2>ret.close)  
+                   {document.querySelector('[data-label="high"]').style.color    = "red"
+                   }
+                  else
+                   {document.querySelector('[data-label="high"]').style.color    = "#04D919"
+                   }
+            })        
+          }, 3000);  
+
+        });            
+</script> 
+<script src="{% static 'H5-Kline-master/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'H5-Kline-master/js/echarts.min.js' %} " type="text/javascript" charset="utf-8"></script>   		
+<script src="{% static 'H5-Kline-master/js/k-line.js' %} " type="text/javascript" charset="utf-8"></script>
+<!-- <script src="{% static 'H5-Kline-master/js/tmpData.js' %} " type="text/javascript" charset="utf-8"></script> -->
+<script>   
+    // 日K线图
+    var htmladd="";
+        htmladd +='<div id="Kline-div" class="Kline-div">';
+        htmladd +='<div id="m-line" class="m-line"></div>';
+        htmladd +='<div id="k-content" class="K-line"></div>';        
+        htmladd +=' </div>';
+    // alert(htmladd)
+    document.querySelector('[data-label="kline"]  ').innerHTML=htmladd           
+    $.getJSON('http://localhost:8000/timelyMarket/klinedata/',function(ret){ 
+      // alert(ret) ;
+            var kChart = echarts.init(document.getElementById('k-content'));             
+            kChart.setOption(initKOption(ret));                 
+           }) ;  
+   
+</script>
+</body>
+</html>  
