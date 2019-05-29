@@ -873,13 +873,13 @@
         $(document).ready(function(){          
          
           setInterval(function() { 
-            $.getJSON('http://localhost:8000/timelyMarket/mlineData/',function(ret){
+            $.getJSON('http://192.168.151.216:8000/timelyMarket/mlineData/',function(ret){
               // alert(ret.mdata)
               var mChart = echarts.init(document.getElementById('m-line'));
 			      	mChart.setOption(initMOption(ret,'hs'));                
            }) ;   
                               
-            $.getJSON('http://localhost:8000/timelyMarket/ajax1/',function(ret){                 
+            $.getJSON('http://192.168.151.216:8000/timelyMarket/ajax1/',function(ret){                 
                   var now=ret.now.toFixed(2)
                   var amount=ret.amount
                   var tsCode=ret.code
@@ -1128,7 +1128,7 @@
         htmladd +=' </div>';
     // alert(htmladd)
     document.querySelector('[data-label="kline"]  ').innerHTML=htmladd           
-    $.getJSON('http://localhost:8000/timelyMarket/klinedata/',function(ret){ 
+    $.getJSON('http://192.168.151.216:8000/timelyMarket/klinedata/',function(ret){ 
       // alert(ret) ;
             var kChart = echarts.init(document.getElementById('k-content'));             
             kChart.setOption(initKOption(ret));                 
