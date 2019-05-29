@@ -1,1 +1,12 @@
-# djangoStock
+<!-- # djangoStock
+一、生成一个项目
+ python3.7 django-admin.py startproject stockweb
+二、运行django服务器
+ python3.7 manage.py runserver
+三、创建一个应用
+ python3.7 manage.py startapp timelyMarket 
+ settings.py添加INSTALLED_APPS
+四、静态目录
+G:\python_code\django\stockweb\timelyMarket\static
+五、Axure目录
+G:\python_code\django\stockweb\timelyMarket\templates\timelyMarket，静态文件需要拷入项目应用的静态目录 -->
