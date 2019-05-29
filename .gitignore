@@ -4,6 +4,7 @@ __pycache__/
 config.ini
 Byte.txt
 /script/uwsgi.log
+/stockweb/stockweb/settings.py
 
 *.py[cod]
 *$py.class
