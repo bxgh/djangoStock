@@ -6,7 +6,7 @@ Byte.txt
 /script/uwsgi.log
 /stockweb/stockweb/__pycache__
 /tockweb/timelyMarket/__pycache__
-
+/stockweb/timelyMarket/static
 *.py[cod]
 *$py.class
 
