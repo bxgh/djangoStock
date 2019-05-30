@@ -25,12 +25,12 @@ for href in hrefs:
 content=content.replace('<head>','<head>   {% load static %}')     #添加static声明
 content=content.replace('</body>','')                              #html尾部添加js程序
 content=content.replace('</html>','')
-bottomFilename=APP_DIR+'/templates/timelyMarket/bottom.html'       #尾部自定义js程序文件 
+bottomFilename=APP_DIR+'/static/bottom.html'       #尾部自定义js程序文件 stockweb\timelyMarket\static\bottom.html
 bottomhtml=open(bottomFilename,'r',encoding="utf-8") 
 bottomContent=bottomhtml.read()
 content=content+bottomContent
 
-klinecssFilename=APP_DIR+'/templates/timelyMarket/klinecss.html'
+klinecssFilename=APP_DIR+'/static/klinecss.html'
 csshtml=open(klinecssFilename,'r',encoding="utf-8") 
 cssContent=csshtml.read()
 content=content.replace('</head>',cssContent)  

@@ -5,7 +5,9 @@ config.ini
 Byte.txt
 stockweb/stockweb/__pycache__/
 tockweb/timelyMarket/__pycache__/
-stockweb/timelyMarket/static/
+# stockweb/timelyMarket/static/
+stockweb\timelyMarket\static\
+stockweb/timelyMarket/migrations/
 *.py[cod]
 *$py.class
 
@@ -122,3 +124,7 @@ dmypy.json
 stockweb/stockweb/settings.py
 stockweb/timelyMarket/views.py
 stockweb/script/uwsgi.log
+stockweb/timelyMarket/__pycache__/views.cpython-37.pyc
+stockweb/stockweb/__pycache__/settings.cpython-37.pyc
+stockweb/timelyMarket/__pycache__/views.cpython-37.pyc
+stockweb/db.sqlite3

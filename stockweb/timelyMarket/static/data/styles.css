@@ -10,17 +10,11 @@
   line-height:normal;
   text-transform:none;
 }
-.box_1 {
-}
-.primary_button {
-  color:#FFFFFF;
-}
 ._一级标题 {
-  font-family:'Arial Negreta', 'Arial Normal', 'Arial';
+  font-family:'Arial Normal', 'Arial';
   font-weight:bold;
   font-style:normal;
-  font-size:36px;
-  color:#D9001B;
+  font-size:32px;
   text-align:left;
 }
 ._二级标题 {
@@ -57,18 +51,26 @@
   font-size:10px;
   text-align:left;
 }
-.label {
-  font-size:14px;
-  text-align:left;
-}
 ._文本段落 {
   text-align:left;
 }
 .line {
 }
+.table_cell {
+}
+.menu_item {
+}
 ._表单提示 {
   color:#999999;
 }
 ._表单禁用 {
+}
+.label {
+  font-size:14px;
+  text-align:left;
+}
+.box_1 {
+  font-size:28px;
+  color:#FFFF00;
 }
 textarea, select, input, button { outline: none; }
