@@ -70,9 +70,23 @@
                   var downlimit=ret.跌停价
                   var zf=ret.涨跌
                   var vol=ret.volume/100
+                  
+                  var shzs=ret.shzs.toFixed(0)
+                  var shzsZf=ret.shzsZf.toFixed(0)
+                  var shzsAmount=ret.shzsAmount.toFixed(0)
+                  var szzs=ret.szzs.toFixed(0)
+                  var szzsZf=ret.szzsZf.toFixed(0)
+                  var szzsAmount=ret.szzsAmount.toFixed(0)
+                  var cyzs=ret.cyzs.toFixed(0)
+                  var cyzsZf=ret.cyzsZf.toFixed(0)
+                  var cyzsAmount=ret.cyzsAmount.toFixed(0)
 
                   if (cost>1000) { cost = cost.toFixed(0)}
-                  if (totalCost>1000) { totalCost = totalCost.toFixed(0)}                      
+                  if (totalCost>1000) { totalCost = totalCost.toFixed(0)}       
+                  document.querySelector('#u21_text > p > span')   
+                  document.querySelector('#u21_text')
+                  document.querySelector('#u21')
+                              
                   document.querySelector('[data-label="tsCode"] > .text > p > span').innerHTML =tsCode;            
                   document.querySelector('[data-label="stcokName"] > .text > p > span').innerHTML =stcokName;  
                   document.querySelector('[data-label="amount"] > .text > p > span').innerHTML =amount+'万';          
@@ -116,7 +130,16 @@
                   document.querySelector('[data-label="uplimit"] > .text > p > span').innerHTML =uplimit;  
                   document.querySelector('[data-label="downlimit"] > .text > p > span').innerHTML =downlimit;   
                   document.querySelector('[data-label="zf"] > .text > p > span').innerHTML =zf; 
-                  document.querySelector('[data-label="vol"] > .text > p > span').innerHTML =vol;         
+                  document.querySelector('[data-label="vol"] > .text > p > span').innerHTML =vol;     
+                  document.querySelector('[data-label="shzs"] > .text > p > span').innerHTML =shzs;   
+                  document.querySelector('[data-label="shzsZf"] > .text > p > span').innerHTML =shzsZf; 
+                  document.querySelector('[data-label="shzsAmount"] > .text > p > span').innerHTML =shzsAmount; 
+                  document.querySelector('[data-label="szzs"] > .text > p > span').innerHTML =szzs;   
+                  document.querySelector('[data-label="szhzsZf"] > .text > p > span').innerHTML =szzsZf; 
+                  document.querySelector('[data-label="szhzsAmount"] > .text > p > span').innerHTML =szzsAmount;
+                  document.querySelector('[data-label="cyzs"] > .text > p > span').innerHTML =cyzs;   
+                  document.querySelector('[data-label="cyzsZf"] > .text > p > span').innerHTML =cyzsZf; 
+                  document.querySelector('[data-label="cyshzsAmount"] > .text > p > span').innerHTML =cyzsAmount;
                           
                   if (zbprice1==close) {document.querySelector('[data-label="zbprice1"] > .text > p > span').style.color = "white" }
                   else

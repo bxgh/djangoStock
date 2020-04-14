@@ -23,4 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('timelyMarket/', include('timelyMarket.urls')),
 ]
-urlpatterns += static('/', document_root=settings.STATIC_ROOT) 
+# urlpatterns += static('/', document_root=settings.STATIC_ROOT) 
