@@ -9,3 +9,5 @@
 G:\python_code\django\stockweb\timelyMarket\static
 五、Axure目录
 G:\python_code\django\stockweb\timelyMarket\templates\timelyMarket，静态文件需要拷入项目应用的静态目录
+
+gittest1
