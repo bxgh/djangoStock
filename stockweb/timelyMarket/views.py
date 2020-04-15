@@ -177,8 +177,9 @@ def watchMarket(tradeDate):
 
 
 def klineData(request):  #k线图数据从本地文件读取
-    h5 = pd.HDFStore('D:/h5qfqdata/kday_SZ300654','r')
+    # h5 = pd.HDFStore('D:/h5qfqdata/kday_SZ300654','r')
     # h5 = pd.HDFStore('/home/ontimeKdayData/h5qfqdata/kday_SZ300654','r')
+    h5 = pd.HDFStore('/www/stock/h5qfqdata/kday_SZ300654','r')
     df=h5['data']
     df=df.sort_values('trade_date', ascending=True)  
     df=df.tail(250)
