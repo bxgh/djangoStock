@@ -1763,10 +1763,10 @@
   function WebSocketTest() {      
       if ("WebSocket" in window) {         
           // 打开一个 web socket
-          ws = new WebSocket("ws://localhost:8000/timelyMarket/stockmline_ws/");
+          ws = new WebSocket("ws://49.232.139.214:8000/timelyMarket/stockmline_ws/");
           ws.onopen = function () {
               // Web Socket 已连接上，使用 send() 方法发送数据
-              ws.send("sz300654");             
+              ws.send("sz000830");             
           };
           ws.onmessage = function (ret) {              
               var obj = JSON.parse(ret.data);             
